@@ -44,7 +44,7 @@
                 const timeArr = setTime.value.split(":");
                 alarmTime.splice(0, alarmTime.length);
                 alarmTime.push(timeArr[0], timeArr[1]); 
-                alarmNotice.innerHTML = `<i class="far fa-bell"></i><span>${setTime.value}</span>`
+                alarmNotice.innerHTML = `<i class="far fa-bell"></i><span>${setTime.value}</span>`;
                 document.body.appendChild(alarmNotice);  
             }
 
@@ -52,7 +52,7 @@
                 audio.pause();
                 audio.currentTime = 0;
                 stopButton.style.visibility = "hidden"; 
-                alarmNotice.remove(); 
+                alarmNotice.innerHTML = ` `;
             }
 
 
