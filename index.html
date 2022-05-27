@@ -40,6 +40,8 @@
             const audio = new Audio('old-fashioned-school-bell.mp3');
             let alarmTime = [];
 
+            /*Function to set the alarm*/
+
             function alarmSet() {
                 const timeArr = setTime.value.split(":");
                 alarmTime.splice(0, alarmTime.length);
@@ -48,6 +50,12 @@
                 document.body.appendChild(alarmNotice);  
             }
 
+            /* 
+            Function to stop the alarm - 
+            * pauses the audio and puts it back to the start, 
+            * then hides the stop alarm button and removes the html from the alarm notice
+            */
+
             function alarmStop() {
                 audio.pause();
                 audio.currentTime = 0;
@@ -55,21 +63,34 @@
                 alarmNotice.innerHTML = ` `;
             }
 
+            /*Function to set the time*/
+
 
             function Time() {
                 const date = new Date();
                 const curHours = date.getHours();
                 const curMins = date.getMinutes();
                 const curSecs = date.getSeconds();
+
+                /*If the current seconds, minutes and hours are less than 10 add a 0 before the number, if not then don't add a zero*/
+
                 curSecs < 10 ? secs.innerHTML = `0${curSecs}` : secs.innerHTML = curSecs;
                 curMins < 10 ? mins.innerHTML = `0${curMins}` : mins.innerHTML = curMins;
                 curHours < 10 ? hours.innerHTML = `0${curHours}` : hours.innerHTML = curHours;
+
+                /*If the time for the alarm set matches the current hours, minutes and seconds the alarm sounds and the stop alarm button becomes visible*/
+
                 if(alarmTime[0] == curHours && alarmTime[1] == curMins && curSecs < 1.5) {
                     audio.play();
                     stopButton.style.visibility = "visible";  
                 }
             }
+
+            /*Set the time function to run every second*/
+
             setInterval(Time, 1000);
+
+            /*Run the time function on page load*/
 
             Time();
 
